@@ -83,8 +83,8 @@ export PATH
 if [ "x$ACCEPTANCE" != "x" ]; then
   # Test against the vendored Chef gem
   cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-[0-9]*/acceptance
-  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD bundle install --without development
-  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD bundle exec chef-acceptance test gem_versions
+  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME="chef-web-downloads" ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD bundle install --without development
+  sudo env PATH=$PATH AWS_SSH_KEY_ID=$AWS_SSH_KEY_ID ARTIFACTORY_USERNAME="chef-web-downloads" ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD bundle exec chef-acceptance test gem_versions
 else
   # Test against the vendored Chef gem
   cd /opt/$PROJECT_NAME/embedded/lib/ruby/gems/*/gems/chef-[0-9]*
