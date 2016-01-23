@@ -105,9 +105,6 @@ module ChefConfig
     # that upload or download files (such as knife upload, knife role from file,
     # etc.) work.
     default :chef_repo_path do
-      # TODO: this should also look at the cookbook_artifacts path, for the
-      # case when we have a repo from `chef export` that has cookbook artifacts
-      # and no cookbooks.
       if self.configuration[:cookbook_path]
         if self.configuration[:cookbook_path].kind_of?(String)
           File.expand_path("..", self.configuration[:cookbook_path])
@@ -116,6 +113,8 @@ module ChefConfig
             File.expand_path("..", path)
           end
         end
+      elsif configuration[:cookbook_artifact_path]
+          File.expand_path("..", self.configuration[:cookbook_artifact_path])
       else
         cache_path
       end
